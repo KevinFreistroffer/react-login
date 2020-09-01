@@ -6,6 +6,8 @@ import Main from './main/main.js';
 import Footer from './footer/footer.js';
 import Form from './form/form.js';
 
+// <Provider store={store}><App></App> </Provider>
+
 function App() {
   return (
     <div className="App">

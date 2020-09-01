@@ -1,0 +1,6 @@
+
+functionThatAcceptsLoginValuesAction = () => { }
+functionThatSetsTheFormIsSubmittingValueAction = () => { }
+functionThatSetsErrorValuesAction = () => { }
+
+
