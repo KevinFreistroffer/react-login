@@ -8,7 +8,7 @@ class Header extends Component {
     }
     render() {
         return (<header>
-            Header
+            <h1>React Login Form</h1>
         </header>);
     }
 }

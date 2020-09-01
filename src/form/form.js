@@ -1,62 +1,119 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
+import Button from '@material-ui/core/Button';
 import './styles.scss';
+import { CircularProgress } from '@material-ui/core';
 
 class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
-            usernameError: 'fdaf',
+            usernameError: '',
             password: '',
-            passwordERror: '',
+            passwordError: '',
+            submitting: false,
+            formError: '',
         }
+
+        this.usernameRef = createRef();
+        this.passwordRef = createRef();
     }
+
+
 
     onChange = (event) => {
-        console.log('onChange', event.target.value);
+        this.setState({
+            [event.target.name]: event.target.value
+        }, () => {
 
-        this.props.onChange(this.state.username, this.state.password);
+            if (this.state.usernameError !== '' || this.state.passwordError !== '') {
+                this.validate();
+            }
+        });
     }
 
-    validate = () => {
+    onBlur = (event) => {
+        this.validate(['username']);
+        // if (event.target.name == 'username' && event.target.value != '') {
+        //     console.log('validate username');
+        // }
+
+        // if (event.target.name == 'password' && event.target.value != '') {
+        //     console.log('validate password');
+        // }
+
+    }
+
+    validate = async () => {
         let usernameError = '';
         let passwordError = '';
 
-        // if (false) {
-        //     usernameError = Constants.ERROR_USERNAME_REQUIRED;
-        // }
+        this.setState({ submitting: true }, () => {
 
-        // if (false) {
-        //     passwordError = Constants.ERROR_PASSWORD_REQUIRED;
-        // }
+            if (this.usernameRef.current.value != null) {
+                if (this.usernameRef.current.value === '') {
+                    // username required
+                    usernameError = 'Username is required';
+                }
+            }
 
-        this.setState({
-            usernameError,
-            passwordError,
+            if (this.passwordRef.current.value != null) {
+                if (this.passwordRef.current.value === '') {
+                    passwordError = 'Password is required';
+                } else if (this.passwordRef.current.value.length < 6) {
+                    passwordError = 'Password must be at least 6 characters.';
+                }
+            }
+
+            this.setState({
+                usernameError,
+                passwordError,
+                submitting: false,
+            });
         });
-
     }
 
-    submit = () => {
-        console.log('form submitted');
 
-        // validate
-        // if usernameError and passwordError are empty strings
-        // send to the server
+
+    submit = async (event) => {
+        event.preventDefault();
+
+        await this.validate();
+
+        if (this.state.usernameError === '' && this.state.passwordError === '') {
+            this.setState({
+                submitting: true,
+            });
+
+            if (this.state.username == 'username' && this.state.password === 'password') {
+                alert('Logged in!');
+                this.setState({
+                    formError: '',
+                    submitting: false,
+                });
+            } else {
+                this.setState({
+                    formError: 'Invalid username and or password.',
+                    submitting: false,
+                });
+            }
+        }
     }
 
     render() {
-        return (<form>
-            <label for="username"> Username
-                <input type="text" id="username" placeholder="Username" onChange={this.onChange} />
+        return (<form id="login-form">
+            <label htmlFor="username"> Username
+                <input type="text" id="login-username-input" ref={this.usernameRef} name="username" placeholder="Username" onChange={this.onChange} onBlur={this.onBlur} />
             </label>
-            {this.state.usernameError != '' ? <div className="error">{this.state.usernameError}</div> : false}
-            <label for="username"> Password
-                <input type="password" id="password" placeholder="Password" onChange={this.onChange} />
+            {this.state.usernameError !== '' ? <div className="error control-error">{this.state.usernameError}</div> : false}
+            <label htmlFor="username"> Password
+                <input type="password" id="login-password-input" ref={this.passwordRef} name="password" placeholder="Password" onChange={this.onChange} onBlur={this.onBlur} />
             </label>
-            {this.state.passwordError != '' ? <div className="error">{this.state.passwordError}</div> : false}
-
-            <button type="submit" onClick={this.submit}>Login</button>
+            {this.state.passwordError !== '' ? <div className="error control-error">{this.state.passwordError}</div> : false}
+            {this.state.formError !== '' ? <div className="error form-error">{this.state.formError}</div> : false}
+            <Button type="submit" disabled={this.state.usernameError !== '' || this.state.passwordError !== ''} onClick={this.submit}>
+                {this.state.submitting ? <CircularProgress color='inherit' size={20} /> : 'Login'}
+            </Button>
         </form>);
     }
 }

@@ -9,7 +9,7 @@ class Main extends Component {
     }
     render() {
         return (<main>
-            <Form></Form>
+            {this.props.children}
         </main>);
     }
 }
