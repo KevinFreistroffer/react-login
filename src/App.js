@@ -12,9 +12,7 @@ import { setLoadingValues } from './redux/actions';
 
 
 function App(props) {
-  useEffect(() => {
-    props.setLoadingValues(false, props.text);
-  });
+
 
   return (
     <div className="App">

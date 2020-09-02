@@ -2,8 +2,8 @@ import { combineReducers, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 
 const initialState = {
-    loading: true,
-    text: 'One moment',
+    loading: false,
+    text: '',
 };
 
 const loadingReducer = (state = initialState, action) => {

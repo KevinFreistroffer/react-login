@@ -107,7 +107,6 @@ class Form extends Component {
 
     render() {
         return (<form id="login-form">
-            <p onClick={this.someFunction}>Click</p>
             <label htmlFor="username"> Username
         <input type="text" id="login-username-input" ref={this.usernameRef} name="username" placeholder="Username" onChange={this.onChange} onBlur={this.onBlur} />
             </label>
