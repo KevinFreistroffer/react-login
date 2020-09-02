@@ -1,6 +1,0 @@
-
-functionThatAcceptsLoginValuesAction = () => { }
-functionThatSetsTheFormIsSubmittingValueAction = () => { }
-functionThatSetsErrorValuesAction = () => { }
-
-

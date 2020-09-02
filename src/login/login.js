@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Form from '../form/form';
 import './styles.scss';
+import { setLoadingValues } from '../redux/actions';
 
 class Login extends Component {
     constructor(props) {
@@ -16,9 +18,23 @@ class Login extends Component {
                     <p>Password: password</p>
                 </div>
                 <Form></Form>
+
             </div>
         );
     }
 }
 
-export default Login;
+const mapStateToProps = (state) => {
+    return {
+        loading: state.loadingReducer.loading,
+        text: state.loadingReducer.text,
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setLoadingValues: (loading, text) => dispatch(setLoadingValues(loading, text)),
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
