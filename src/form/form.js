@@ -41,7 +41,8 @@ const modalTextStyles = {
 };
 
 const modalDismissStyles = {
-    color: 'rgba(0,0,0,0.5)'
+    color: 'rgba(0,0,0,0.5)',
+    cursor: 'pointer',
 };
 
 class Form extends Component {
