@@ -9,14 +9,9 @@ class Header extends Component {
         this.state = {}
     }
 
-    toggleLoadingComponent = () => {
-        this.props.setLoadingValues(true);
-    }
-
     render() {
         return (<header>
             <h1>React Login Form</h1>
-            <p onClick={this.toggleLoadingComponent}>Click to toggle a Loading Component using Redux</p>
         </header>);
     }
 }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Form from '../form/form';
 import './styles.scss';
 import { setLoadingValues } from '../redux/actions';
+import { Modal } from '@material-ui/core';
 
 class Login extends Component {
     constructor(props) {
