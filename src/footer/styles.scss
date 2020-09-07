@@ -1,10 +1,17 @@
 footer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 25vh;
     min-height: 15rem;
-    padding: 3rem;
+    padding: 1rem;
     background-color: black;
     color: white;
+
+    h2 {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
 }

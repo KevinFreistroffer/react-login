@@ -1,0 +1,13 @@
+#dashboard {
+    header {
+        padding: 0;
+        margin-bottom: 3rem;
+        color: black;
+        background-color: rgba(0,0,0,0.1);
+        p {
+            span {
+                text-decoration: underline;
+            }
+        }
+    }
+}

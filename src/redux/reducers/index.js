@@ -1,10 +1,19 @@
 import { combineReducers, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 
+const SET_USER = 'SET_USER';
+
+
 const initialState = {
     loading: false,
     text: '',
 };
+
+const userInitialState = {
+    username: 'abcdefg',
+    password: ''
+};
+
 
 const loadingReducer = (state = initialState, action) => {
     console.log('loadingReducer');
@@ -21,4 +30,17 @@ const loadingReducer = (state = initialState, action) => {
     }
 }
 
-export default combineReducers({ loadingReducer: loadingReducer });
+const userReducer = (state = userInitialState, action) => {
+    switch (action.type) {
+        case SET_USER:
+            return {
+                ...state,
+                username: action.payload.username,
+                password: action.payload.password
+            }
+        default:
+            return state;
+    }
+};
+
+export default combineReducers({ loadingReducer, userReducer, });

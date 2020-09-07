@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './styles.scss';
 import { CircularProgress } from '@material-ui/core';
-import { setLoadingValues } from '../redux/actions';
+import { setLoadingValuesAction } from '../redux/actions';
 
 class Loading extends Component {
     constructor(props) {
@@ -15,7 +15,7 @@ class Loading extends Component {
             <CircularProgress color='inherit' size={20} />
             {this.props.text !== '' ? <h1>{this.props.text}</h1> : false}
             <p onClick={() => {
-                this.props.setLoadingValues(false);
+                this.props.setLoadingValuesAction(false);
             }}>Dismiss this loading screen</p>
         </div>);
     }
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setLoadingValues: (loading, text) => dispatch(setLoadingValues(loading, text)),
+        setLoadingValuesAction: (loading, text) => dispatch(setLoadingValuesAction(loading, text)),
     }
 };
 

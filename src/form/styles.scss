@@ -7,29 +7,29 @@
     margin: 0 auto;
 
 
-   
-
     label {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
         padding-top: 1rem;
-        margin: 0.5rem auto;
-
-        input,  .login-textfield{ 
-            width: 100% !important;
-            padding: 0.75rem;
-            margin: 0 0 0 0;
-            border: 1px solid rgba(0, 0, 0, 0.26);
-            border-radius: 2px;
-        }
-
-        
+        margin: 0.5rem auto;  
     }
 
-    .error {
+    input,  .login-textfield{ 
+        width: 100% !important;
+        padding: 0.75rem;
+        margin: 0 0 0 0;
+        border: 1px solid rgba(0, 0, 0, 0.26);
+        border-radius: 2px;
+    }
+
+    .error-text {
         color: red;
+    }
+
+    .control-error {
+        border: 2px solid red;
     }
 
 
@@ -42,6 +42,17 @@
         background-color: black;
         color: white;
     }
+}
 
- 
+@media only screen and (min-width: 34rem) {
+
+    #login {
+        width: 100%;
+
+        #login-form {
+            max-width: 30rem;
+            width: 100%;
+        }
+    }
+
 }

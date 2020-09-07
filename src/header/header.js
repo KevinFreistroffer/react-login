@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './styles.scss';
-import { setLoadingValues } from '../redux/actions'
+import { setLoadingValuesAction } from '../redux/actions'
 
 class Header extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setLoadingValues: (loading = false, text = '') => dispatch(setLoadingValues(loading, text)),
+        setLoadingValuesAction: (loading = false, text = '') => dispatch(setLoadingValuesAction(loading, text)),
     }
 };
 
