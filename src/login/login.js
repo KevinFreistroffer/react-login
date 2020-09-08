@@ -80,7 +80,8 @@ class Login extends Component {
           this.state.usernameError !== '' ||
           this.state.passwordError !== ''
         ) {
-          await this.validate();
+          await this.validateUsername();
+          await this.validatePassword();
         }
       }
     );
@@ -88,10 +89,13 @@ class Login extends Component {
 
   onBlur = (event) => {
     event.persist();
-    this.validate().then((_) => {});
+
+    event.target.name === 'username'
+      ? this.validateUsername()
+      : this.validatePassword();
   };
 
-  validate = async () => {
+  validateUsername = async () => {
     return new Promise((resolve, reject) => {
       let usernameError = '';
       let passwordError = '';
@@ -106,6 +110,14 @@ class Login extends Component {
       } else {
         usernameError = '';
       }
+
+      this.setState({ usernameError }, () => resolve());
+    });
+  };
+
+  validatePassword = async () => {
+    return new Promise((resolve, reject) => {
+      let passwordError = '';
 
       if (
         this.state.password === '' ||
@@ -125,20 +137,16 @@ class Login extends Component {
         passwordError = '';
       }
 
-      this.setState(
-        {
-          usernameError,
-          passwordError,
-        },
-        () => resolve()
-      );
+      this.setState({ passwordError }, () => resolve());
     });
   };
 
   onSubmit = async (event) => {
     event.preventDefault();
     this.setState({ submitting: true });
-    await this.validate();
+
+    await this.validateUsername();
+    await this.validatePassword();
 
     if (this.state.usernameError === '' && this.state.passwordError === '') {
       if (

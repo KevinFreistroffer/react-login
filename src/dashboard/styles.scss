@@ -1,13 +1,31 @@
 #dashboard {
-    header {
-        padding: 0;
-        margin-bottom: 3rem;
-        color: black;
-        background-color: rgba(0,0,0,0.1);
-        p {
-            span {
-                text-decoration: underline;
-            }
+  header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 1rem;
+    margin-bottom: 3rem;
+    color: black;
+    background-color: rgba(0, 0, 0, 0.1);
+
+    p {
+      display: inline-block;
+      width: auto;
+      font-size: 0.8rem;
+      cursor: default;
+
+      &.signed-in-as {
+        margin-right: 1rem;
+        text-align: right;
+
+        span {
+          text-decoration: underline;
+          cursor: pointer;
         }
+      }
+      &.sign-out {
+        color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+      }
     }
+  }
 }
